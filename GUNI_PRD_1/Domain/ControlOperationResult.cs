@@ -26,7 +26,7 @@ namespace GUNI_PRD_1
             if (!Messages.Any())
                 return result;
 
-            result += " Messages:";
+            result += "\r\nMessages:";
             return Messages.Aggregate(result, (current, message) => current + $"\r\n{message}");
         }
     }

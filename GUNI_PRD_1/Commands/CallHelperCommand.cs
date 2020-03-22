@@ -5,14 +5,9 @@ namespace GUNI_PRD_1
 {
     public class CallHelperCommand : Operation
     {
-        public Guid ID { get; set; }
-        public string Name { get; set; }
-
-        public Version MechanicVersion { get; }
-
         public CallHelperCommand()
         {
-            ID = new Guid();
+            ID = Guid.NewGuid();
             Name = this.GetType().FullName;
             MechanicVersion = new Version("1.2.0.0");
         }

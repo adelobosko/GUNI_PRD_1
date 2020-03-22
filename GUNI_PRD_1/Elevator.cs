@@ -34,15 +34,25 @@ namespace GUNI_PRD_1
         public bool IsDoorOpened { get; private set; }
 
         public Version MechanicVersion { get; }
+        public int MasterPassword { get; private set; }
 
 
-        public Elevator(string name, int maxFloor, Version mechanicVersion)
+        public Elevator(string name, int maxFloor, Version mechanicVersion, string masterPassword = "12345")
         {
             _currentFloor = 1;
             this.Name = name;
             this.MaxFloor = maxFloor > 0 ? maxFloor : 1;
             this.MechanicVersion = mechanicVersion == null ? new Version("1.1.0.0") : mechanicVersion;
             _elevatorControl = null;
+            MasterPassword = masterPassword.GetHashCode();
+
+            Console.WriteLine(this);
+        }
+
+        public override string ToString()
+        {
+            return
+                $"Elevator {Name}, maxFloors {MaxFloor}, mechanicVersion {MechanicVersion}, passwordHash {MasterPassword}";
         }
 
         public void CallSpecialist()

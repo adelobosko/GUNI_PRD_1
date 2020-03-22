@@ -20,6 +20,27 @@ namespace GUNI_PRD_1
             Console.WriteLine(oldElevator.MoveUp(keypadElevatorControl));
             Console.WriteLine(keypadElevatorControl.MoveUp());
 
+            Console.WriteLine(keypadElevatorControl.Stop());
+            Console.WriteLine(keypadElevatorControl.MoveDown());
+            Console.WriteLine(keypadElevatorControl.MoveDown());
+
+
+
+            var remoteElevatorControl = new RemoteElevatorControl("AnyDesk", "1321", DateTime.Now, oldElevator, "12345");
+
+            oldElevator.SetController(remoteElevatorControl);
+            remoteElevatorControl.CloseDoor();
+
+
+
+            var newElevator = new Elevator("New", 2, new Version("1.2.0.0"), "testPass");
+            newElevator.SetController(remoteElevatorControl);
+
+            Console.WriteLine(remoteElevatorControl.Stop());
+            remoteElevatorControl.InputPassword("testPass");
+            Console.WriteLine(remoteElevatorControl.Stop());
+
+
             Console.ReadKey();
         }
     }

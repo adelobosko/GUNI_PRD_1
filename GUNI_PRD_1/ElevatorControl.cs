@@ -15,7 +15,9 @@ namespace GUNI_PRD_1
             this.CompanyName = companyName;
             this.ModelName = modelName;
             this.ReleaseDate = releaseDate;
-            this.Elevator = elevator == null ? null : new Elevator(elevator.Name, elevator.MaxFloor, elevator.MechanicVersion);
+            this.Elevator = elevator;
+
+            Console.WriteLine(this);
         }
 
         public override string ToString()
