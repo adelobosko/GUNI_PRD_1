@@ -100,7 +100,7 @@ namespace GUNI_PRD_1
             };
         }
 
-        public ControlOperationResult CloseDoor(ElevatorControl elevatorControl)
+        public ControlOperationResult CloseDoor()
         {
             if (_elevatorControl != null) return _elevatorControl.CloseDoor();
 
@@ -112,7 +112,7 @@ namespace GUNI_PRD_1
             };
         }
 
-        public ControlOperationResult MoveUp(ElevatorControl elevatorControl)
+        public ControlOperationResult MoveUp()
         {
             if (_elevatorControl != null) return _elevatorControl.MoveUp();
 
@@ -124,7 +124,7 @@ namespace GUNI_PRD_1
             };
         }
 
-        public ControlOperationResult MoveDown(ElevatorControl elevatorControl)
+        public ControlOperationResult MoveDown()
         {
             if (_elevatorControl != null) return _elevatorControl.MoveDown();
 
@@ -136,7 +136,7 @@ namespace GUNI_PRD_1
             };
         }
 
-        public ControlOperationResult Stop(ElevatorControl elevatorControl)
+        public ControlOperationResult Stop()
         {
             if (_elevatorControl != null) return _elevatorControl.Stop();
 
@@ -148,7 +148,7 @@ namespace GUNI_PRD_1
             };
         }
 
-        public ControlOperationResult CallHelper(ElevatorControl elevatorControl)
+        public ControlOperationResult CallHelper()
         {
             if (_elevatorControl != null) return _elevatorControl.CallHelper();
 

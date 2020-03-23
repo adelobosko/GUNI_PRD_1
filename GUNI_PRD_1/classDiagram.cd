@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GUNI_PRD_1.CallHelperCommand">
+    <Position X="1.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\CallHelperCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.CloseDoorCommand">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\CloseDoorCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.MoveDownCommand">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\MoveDownCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.MoveUpCommand">
+    <Position X="10.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\MoveUpCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.OpenDoorCommand">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\OpenDoorCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.StopCommand">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\StopCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.ControlOperationResult">
+    <Position X="11.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Domain\ControlOperationResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.Operation">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAQAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Domain\Operation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.Elevator" BaseTypeListCollapsed="true">
+    <Position X="17" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA0CAAQKAAAAABAGAAAABAwAGAAgAQAAYSAAAREIUAA=</HashCode>
+      <FileName>Elevator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="GUNI_PRD_1.ElevatorControl">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEBQCACAAAIAAAEAAAABAAAAAAAAAAAYQAAAAgAAAA=</HashCode>
+      <FileName>ElevatorControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GUNI_PRD_1.KeypadElevatorControl">
+    <Position X="1" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEBAAACAAAAAAAAAAAABAAAAAAAAAAAYQAAAAAAAAA=</HashCode>
+      <FileName>KeypadElevatorControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.Program">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUNI_PRD_1.RemoteElevatorControl">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEBAAACAAAAABAAAAAABAAAAAAAAAAEYQAAAAAAAAA=</HashCode>
+      <FileName>RemoteElevatorControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GUNI_PRD_1.IControllable">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACAAAAAAAAAAAABAAAAAAAAAAAYQAAAAAAAAA=</HashCode>
+      <FileName>Domain\IControllable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GUNI_PRD_1.IMechanical">
+    <Position X="13" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAIAAAAAAAAAAAAAAAACAAAAAAAACAAAQEAAAA=</HashCode>
+      <FileName>Domain\IMechanical.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="GUNI_PRD_1.ControlOperationStatus">
+    <Position X="15" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domain\ControlOperationResult.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

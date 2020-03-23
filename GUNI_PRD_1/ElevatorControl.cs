@@ -5,14 +5,12 @@ namespace GUNI_PRD_1
     public abstract class ElevatorControl : IControllable
     {
         public string ModelName { get; set; }
-        public string CompanyName { get; set; }
         public DateTime ReleaseDate { get; set; }
 
         public Elevator Elevator { get;  set; }
         
-        protected ElevatorControl(string companyName, string modelName, DateTime releaseDate, Elevator elevator)
+        protected ElevatorControl(string modelName, DateTime releaseDate, Elevator elevator = null)
         {
-            this.CompanyName = companyName;
             this.ModelName = modelName;
             this.ReleaseDate = releaseDate;
             this.Elevator = elevator;
@@ -22,7 +20,7 @@ namespace GUNI_PRD_1
 
         public override string ToString()
         {
-            return $"Elevator {ModelName} created by {CompanyName} in {ReleaseDate}";
+            return $"Elevator {ModelName} created in {ReleaseDate}";
         }
 
 

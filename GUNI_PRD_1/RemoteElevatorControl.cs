@@ -3,11 +3,14 @@ using System.Collections.Generic;
 
 namespace GUNI_PRD_1
 {
-    public class KeypadElevatorControl : ElevatorControl
+    public class RemoteElevatorControl : ElevatorControl
     {
-        public KeypadElevatorControl(string modelName, DateTime releaseDate, Elevator elevator = null)
+        public int MasterPassword { get; private set; }
+
+        public RemoteElevatorControl(string modelName, DateTime releaseDate, Elevator elevator = null, string masterPassword = "12345")
             : base(modelName, releaseDate, elevator)
         {
+            MasterPassword = masterPassword.GetHashCode();
         }
 
         protected override ControlOperationResult ElevatorOperationHandler(Operation operation)
@@ -25,7 +28,44 @@ namespace GUNI_PRD_1
                 };
             }
 
+            if (Elevator.MasterPassword != MasterPassword)
+            {
+                return new ControlOperationResult()
+                {
+                    Status = ControlOperationStatus.DECLINED,
+                    Messages = new List<string>()
+                    {
+                        "Access denied."
+                    }
+                };
+            }
+
             return operation.Execute(this.Elevator);
+        }
+
+        public ControlOperationResult InputPassword(string masterPassword)
+        {
+            MasterPassword = masterPassword.GetHashCode();
+            if (Elevator.MasterPassword != MasterPassword)
+            {
+                return new ControlOperationResult()
+                {
+                    Status = ControlOperationStatus.EXECUTED,
+                    Messages = new List<string>()
+                    {
+                        "Access denied."
+                    }
+                };
+            }
+
+            return new ControlOperationResult()
+            {
+                Status = ControlOperationStatus.EXECUTED,
+                Messages = new List<string>()
+                {
+                    "Access allowed."
+                }
+            };
         }
 
         public override ControlOperationResult OpenDoor()
