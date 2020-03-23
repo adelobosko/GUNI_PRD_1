@@ -4,75 +4,6 @@ using System.Transactions;
 
 namespace GUNI_PRD_1
 {
-    public class MenuObject
-    {
-        public string Description { get; set; }
-        public object Object { get; set; }
-        public Type Type { get; set; }
-    }
-
-    public class MenuItem
-    {
-        public List<MenuItem> Items { get; set; }
-        public string Name { get; set; }
-        public Action<Menu, object, Type> Action { get; set; }
-
-        public MenuObject MenuObject { get; set; }
-
-        public MenuItem()
-        {
-            Items = new List<MenuItem>();
-            MenuObject = new MenuObject();
-        }
-    }
-
-    public class Menu
-    {
-        public List<MenuItem> Items { get; set; }
-
-        public Menu()
-        {
-            Items = new List<MenuItem>();
-        }
-
-        public void ShowInConsole()
-        {
-            var selectedOperation = "";
-            MenuItem menuItem;
-
-        startShowInConsoleLabel:
-            Console.Clear();
-            Console.WriteLine($"Select option:");
-            for (int i = 0; i < Items.Count; i++)
-            {
-                Console.WriteLine($"  {i} - {Items[i].Name}");
-            }
-            Console.WriteLine($"  e - Close program");
-            try
-            {
-                selectedOperation = Console.ReadLine();
-                if (selectedOperation == "e")
-                {
-                    return;
-                }
-                menuItem = Items[Convert.ToInt32(selectedOperation)];
-                menuItem.Action.Invoke(this, Items[Convert.ToInt32(selectedOperation)], typeof(MenuItem));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($" *** Can not execute {selectedOperation} operation id.");
-                Console.WriteLine($" * Press any key to continue...");
-                Console.ReadKey();
-            }
-            goto startShowInConsoleLabel;
-        }
-
-        public override string ToString()
-        {
-            return "";
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -81,6 +12,7 @@ namespace GUNI_PRD_1
             {
                 Items = new List<MenuItem>()
                 {
+                    //Elevators
                     new MenuItem()
                     {
                         Name = "Select elevator:",
@@ -116,7 +48,7 @@ namespace GUNI_PRD_1
                                     var elevator = (Elevator)Convert.ChangeType(obj, type);
                                     ElevatorControl elevatorControl;
                                     var elevatorControls = (List<ElevatorControl>)@this.Items[2].MenuObject.Object;
-                                    var selectedOperation = "";
+                                    var input = "";
 
                                     selectControlLabel:
                                     Console.Clear();
@@ -126,14 +58,14 @@ namespace GUNI_PRD_1
                                         Console.WriteLine($"  {i} - {elevatorControls[i].ModelName}");
                                     }
                                     Console.WriteLine("  b - Back");
-                                    selectedOperation = Console.ReadLine();
-                                    if (selectedOperation == "b")
+                                    input = Console.ReadLine();
+                                    if (input == "b")
                                     {
                                         return;
                                     }
                                     try
                                     {
-                                        elevatorControl = elevatorControls[Convert.ToInt32(selectedOperation)];
+                                        elevatorControl = elevatorControls[Convert.ToInt32(input)];
                                     }
                                     catch (Exception ex)
                                     {
@@ -246,7 +178,7 @@ namespace GUNI_PRD_1
                         Action = delegate(Menu @this, object obj, Type type)
                         {
                             var menuItem = (MenuItem)Convert.ChangeType(obj, type);
-                            var selectedOperation = "";
+                            var input = "";
                             Elevator elevator;
                             var listElevators = (List<Elevator>)Convert.ChangeType(menuItem.MenuObject.Object, menuItem.MenuObject.Type);
 
@@ -259,14 +191,14 @@ namespace GUNI_PRD_1
                             }
 
                             Console.WriteLine("  b - Back");
-                            selectedOperation = Console.ReadLine();
-                            if (selectedOperation == "b")
+                            input = Console.ReadLine();
+                            if (input == "b")
                             {
                                 return;
                             }
                             try
                             {
-                                elevator = listElevators[Convert.ToInt32(selectedOperation)];
+                                elevator = listElevators[Convert.ToInt32(input)];
 
                                 startElevatorOperationsLabel:
                                 Console.Clear();
@@ -276,21 +208,21 @@ namespace GUNI_PRD_1
                                     Console.WriteLine($"  {i} - {menuItem.Items[i].Name}");
                                 }
                                 Console.WriteLine("  b - Back");
-                                selectedOperation = Console.ReadLine();
-                                if (selectedOperation == "b")
+                                input = Console.ReadLine();
+                                if (input == "b")
                                 {
                                     return;
                                 }
 
                                 try
                                 {
-                                    menuItem.Items[Convert.ToInt32(selectedOperation)].Action.Invoke(@this, elevator, typeof(Elevator));
+                                    menuItem.Items[Convert.ToInt32(input)].Action.Invoke(@this, elevator, typeof(Elevator));
                                     Console.WriteLine($" * Press any key to continue...");
                                     Console.ReadKey();
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine($" *** Can not execute {selectedOperation} operation id.");
+                                    Console.WriteLine($" *** Can not execute {input} operation id.");
                                     Console.WriteLine($" * Press any key to continue...");
                                     Console.ReadKey();
                                 }
@@ -298,7 +230,7 @@ namespace GUNI_PRD_1
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine($" *** Can not execute {selectedOperation} operation id.");
+                                Console.WriteLine($" *** Can not execute {input} operation id.");
                                 Console.WriteLine($" * Press any key to continue...");
                                 Console.ReadKey();
                             }
@@ -311,6 +243,7 @@ namespace GUNI_PRD_1
                             Object = new List<Elevator>()
                         }
                     },
+                    //Create elevator
                     new MenuItem()
                     {
                         Name = "Create elevator:",
@@ -318,7 +251,7 @@ namespace GUNI_PRD_1
                         Action = delegate(Menu @this, object obj, Type type)
                         {
                             var menuItem = (MenuItem)Convert.ChangeType(obj, type);
-                            var selectedOperation = "";
+                            var input = "";
                             var elevatorName = "";
                             var elevatorMaxFloor = 1;
                             Version elevatorMechanicVersion;
@@ -327,15 +260,25 @@ namespace GUNI_PRD_1
 
                             inputElevatorNameLabel:
                             Console.Clear();
-                            Console.WriteLine("Input elevator name:");
-                            elevatorName = Console.ReadLine();
+                            Console.WriteLine("  b - Back\r\nInput elevator name:");
+                            input = Console.ReadLine();
+                            if (input == "b")
+                            {
+                                return;
+                            }
+                            elevatorName = input;
 
                             inputElevatorMaxFloorLabel:
                             Console.Clear();
-                            Console.WriteLine("Input elevator max floor:");
+                            Console.WriteLine("  b - Back\r\nInput elevator max floor:");
+                            input = Console.ReadLine();
+                            if (input == "b")
+                            {
+                                return;
+                            }
                             try
                             {
-                                elevatorMaxFloor = Convert.ToInt32(Console.ReadLine());
+                                elevatorMaxFloor = Convert.ToInt32(input);
                                 if (elevatorMaxFloor < 1 || elevatorMaxFloor > 100)
                                 {
                                     Console.WriteLine($" *** Write correct floor. (1-100)");
@@ -354,10 +297,15 @@ namespace GUNI_PRD_1
 
                             inputElevatorVersionLabel:
                             Console.Clear();
-                            Console.WriteLine("Input elevator mechanic version 1.1.0.0 as standard:");
+                            Console.WriteLine("  b - Back\r\nInput elevator mechanic version 1.1.0.0 as standard:");
+                            input = Console.ReadLine();
+                            if (input == "b")
+                            {
+                                return;
+                            }
                             try
                             {
-                                elevatorMechanicVersion = new Version(Console.ReadLine());
+                                elevatorMechanicVersion = new Version(input);
                             }
                             catch (Exception ex)
                             {
@@ -369,18 +317,13 @@ namespace GUNI_PRD_1
 
                             inputElevatorPasswordLabel:
                             Console.Clear();
-                            Console.WriteLine("Input elevator password:");
-                            try
+                            Console.WriteLine("  b - Back\r\nInput elevator password:");
+                            input = Console.ReadLine();
+                            if (input == "b")
                             {
-                                elevatorPassword = Console.ReadLine();
+                                return;
                             }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($" *** Write correct version. Example: 1.1.0.0");
-                                Console.WriteLine($" * Press any key to continue...");
-                                Console.ReadKey();
-                                goto inputElevatorPasswordLabel;
-                            }
+                            elevatorPassword = input;
 
                             var elevator = new Elevator(elevatorName, elevatorMaxFloor, elevatorMechanicVersion, elevatorPassword);
 
@@ -390,6 +333,7 @@ namespace GUNI_PRD_1
                         },
                         MenuObject = new MenuObject()
                     },
+                    //Controls
                     new MenuItem()
                     {
                         Name = "Select control:",
@@ -542,7 +486,7 @@ namespace GUNI_PRD_1
                         Action = delegate(Menu @this, object obj, Type type)
                         {
                             var menuItem = (MenuItem)Convert.ChangeType(obj, type);
-                            var selectedOperation = "";
+                            var input = "";
                             ElevatorControl elevatorControl;
                             var listElevatorControls = (List<ElevatorControl>)Convert.ChangeType(menuItem.MenuObject.Object, menuItem.MenuObject.Type);
 
@@ -555,14 +499,14 @@ namespace GUNI_PRD_1
                             }
 
                             Console.WriteLine("  b - Back");
-                            selectedOperation = Console.ReadLine();
-                            if (selectedOperation == "b")
+                            input = Console.ReadLine();
+                            if (input == "b")
                             {
                                 return;
                             }
                             try
                             {
-                                elevatorControl = listElevatorControls[Convert.ToInt32(selectedOperation)];
+                                elevatorControl = listElevatorControls[Convert.ToInt32(input)];
 
                                 elevatorControlOperationsLabel:
                                 Console.Clear();
@@ -572,21 +516,21 @@ namespace GUNI_PRD_1
                                     Console.WriteLine($"  {i} - {menuItem.Items[i].Name}");
                                 }
                                 Console.WriteLine("  b - Back");
-                                selectedOperation = Console.ReadLine();
-                                if (selectedOperation == "b")
+                                input = Console.ReadLine();
+                                if (input == "b")
                                 {
                                     return;
                                 }
 
                                 try
                                 {
-                                    menuItem.Items[Convert.ToInt32(selectedOperation)].Action.Invoke(@this, elevatorControl, typeof(ElevatorControl));
+                                    menuItem.Items[Convert.ToInt32(input)].Action.Invoke(@this, elevatorControl, typeof(ElevatorControl));
                                     Console.WriteLine($" * Press any key to continue...");
                                     Console.ReadKey();
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine($" *** Can not execute {selectedOperation} operation id.");
+                                    Console.WriteLine($" *** Can not execute {input} operation id.");
                                     Console.WriteLine($" * Press any key to continue...");
                                     Console.ReadKey();
                                 }
@@ -594,7 +538,7 @@ namespace GUNI_PRD_1
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine($" *** Can not execute {selectedOperation} operation id.");
+                                Console.WriteLine($" *** Can not execute {input} operation id.");
                                 Console.WriteLine($" * Press any key to continue...");
                                 Console.ReadKey();
                             }
@@ -607,6 +551,7 @@ namespace GUNI_PRD_1
                             Object = new List<ElevatorControl>()
                         }
                     },
+                    //Create control
                     new MenuItem()
                     {
                         Name = "Create control:",
@@ -682,10 +627,6 @@ namespace GUNI_PRD_1
             };
 
             menu.ShowInConsole();
-
-            
-            
-            Console.ReadKey();
         }
     }
 }
